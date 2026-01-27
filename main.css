@@ -4,6 +4,24 @@ body {
   color: #272727;
 }
 
+@keyframes borderPulse {
+  0% {
+    border: 10px solid white;
+  }
+  100% {
+    border: 2px solid white;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
 .landing-page {
   background-color: white;
   width: 100%;
@@ -60,6 +78,7 @@ body {
   padding: 100px 0;
   text-align: left;
   outline: 8px solid #d4ecf2;
+  height: 600px;
 }
 
 .introduction .content {
@@ -140,7 +159,6 @@ body {
   font-family: "Monomaniac One", sans-serif;
 }
 
-
 .card {
   background-color: #b8dfe9;
   border-radius: 10px;
@@ -148,6 +166,16 @@ body {
   width: 40%;
   margin: 0;
   overflow: hidden;
+  text-align: left;
+  height: 450px;
+  box-sizing: border-box;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .card img {
@@ -155,11 +183,16 @@ body {
   height: 200px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
 
 .card_content {
   padding: 20px;
+}
+
+.card h2 {
+  font-size: 24px;
+  margin: 0 0 10px;
 }
 
 .feature-container {
@@ -182,6 +215,13 @@ body {
   overflow: hidden;
   padding: 20px;
   text-align: left;
+  height: 450px;
+  box-sizing: border-box;
+  transition: transform 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: scale(1.05);
 }
 
 .feature-card img {
@@ -213,3 +253,4 @@ body {
   margin: 0;
   font-size: 18px;
 }
+
