@@ -1,0 +1,191 @@
+body {
+  margin: 0;
+  font-family: "Gothic A1", sans-serif;
+  color: #272727;
+}
+
+.landing-page {
+  background-color: white;
+  width: 100%;
+  overflow: hidden;
+}
+
+.top-bar {
+  background-color: #ffffff;
+  padding: 15px 0;
+  box-shadow: 0 1 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.top-bar_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navigation ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation li {
+  position: relative;
+}
+
+.navigation a {
+  text-decoration: none;
+  font-family: "Gothic A1", sans-serif;
+  font-size: 20px;
+  color: #2b2b2b;
+  display: inline-block;
+}
+
+.banner {
+  background-color: #094a62;
+  height: 964px;
+}
+
+.introduction {
+  background-color: #b8dfe9;
+  position: relative;
+  padding: 100px 0;
+  text-align: left;
+  outline: 8px solid #d4ecf2;
+}
+
+.introduction .content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.introduction .content_title {
+  font-family: "Monomaniac One", sans-serif;
+  font-size: 96px;
+  margin: 0 0 20px;
+}
+
+.introduction .content_text {
+  font-size: 24px;
+  margin: 0 0 20px;
+  max-width: 695px;
+}
+
+.learn-more {
+  display: inline-flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 40px;
+  padding: 10px 20px;
+  color: #248db4;
+  font-size: 32px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.image-frame {
+  position: absolute;
+  display:block;
+  right: 110px;
+  top: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 50px 10px rgba(9.43, 74.44, 98.08, 0.1);
+  height:600px;
+  width:500px;
+  overflow: hidden;
+}
+
+.image-frame img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.latest {
+  background-color: #ffffff;
+  padding: 100px 0;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.latest_title {
+  font-size: 96px;
+  margin-bottom: 40px;
+  font-family: "Monomaniac One", sans-serif;
+}
+
+.card-list {
+  display: none;
+}
+
+.card {
+  background-color: #b8dfe9;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(9.43, 74.44, 98.08, 0.2);
+  width: 40%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 0;
+}
+
+.card_content {
+  padding: 20px;
+}
+
+.feature-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  align-items: flex-start;
+}
+
+.feature-card {
+  background-color: #b6dde7;
+  box-shadow: 0px 0px 20px rgba(9.43, 74.44, 98.08, 0.2);
+  border-radius: 10px;
+  margin: 0;
+  width: 50%;
+  overflow: hidden;
+  padding: 20px;
+  text-align: left;
+}
+
+.feature-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 20px;
+}
+
+.feature-card h2 {
+  font-size: 24px;
+  margin: 0 0 10px;
+}
+
+.feature-card p {
+  font-size: 16px;
+}
