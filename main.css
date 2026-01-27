@@ -4,23 +4,6 @@ body {
   color: #272727;
 }
 
-@keyframes borderPulse {
-  0% {
-    border: 10px solid white;
-  }
-  100% {
-    border: 2px solid white;
-  }
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
 
 .landing-page {
   background-color: white;
