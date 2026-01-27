@@ -4,6 +4,7 @@ body {
   color: #272727;
 }
 
+/* A lot of this is terrible and redundant and needs refactoring */
 
 .landing-page {
   background-color: white;
@@ -129,7 +130,7 @@ body {
 
 .latest {
   background-color: #ffffff;
-  padding: 100px 0;
+  padding: 20px 0;
   text-align: center;
   display: grid;
   place-items: center;
@@ -138,7 +139,7 @@ body {
 
 .latest_title {
   font-size: 96px;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
   font-family: "Monomaniac One", sans-serif;
 }
 
@@ -230,6 +231,7 @@ body {
   padding: 15px 0;
   text-align: center;
   box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
 }
 
 .bottom-bar p {
@@ -237,3 +239,98 @@ body {
   font-size: 18px;
 }
 
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .top-bar_container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .navigation ul {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .navigation a {
+    font-size: 16px;
+  }
+
+  .banner {
+    height: 400px;
+    margin-top: 120px;
+  }
+
+  .introduction {
+    padding: 40px 0;
+    height: auto;
+    text-align: center;
+  }
+
+  .introduction .content {
+    padding: 0 20px;
+  }
+
+  .introduction .content_title {
+    font-size: 48px;
+    margin: 0 0 15px;
+  }
+
+  .introduction .content_text {
+    font-size: 16px;
+    margin: 0 0 20px;
+    max-width: 100%;
+  }
+
+  .learn-more {
+    width: 100%;
+    max-width: 300px;
+    font-size: 20px;
+    padding: 10px 15px;
+    height: auto;
+  }
+
+  .image-frame {
+    position: static;
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    margin: 30px auto 0;
+    right: auto;
+    top: auto;
+  }
+
+  .image-frame img {
+    object-fit: cover;
+  }
+
+  .latest_title {
+    font-size: 48px;
+    margin-bottom: 40px;
+  }
+
+  .feature-container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .card {
+    width: 90%;
+    height: auto;
+  }
+
+  .feature-card {
+    width: 90%;
+    height: auto;
+  }
+
+  .card img {
+    height: 150px;
+  }
+
+  .feature-card img {
+    height: 150px;
+  }
+}
