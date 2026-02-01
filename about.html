@@ -9,23 +9,7 @@
 </head>
 
 <body>
-    <header class="top-bar">
-        <div class="top-bar_container">
-            <div class="logo">
-                TODO INSERT LOGO
-            </div>
-            <nav class="navigation">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Members</a></li>
-                    <li><a href="#">Donate</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div id="site-header"></div>
     <section class="content_section">
         <div class="content">
             <h1 class="content_title">About Us</h1>
@@ -41,3 +25,18 @@
         </div>
     </section>
 </body>
+<script>
+    (function () {
+        fetch('header.html')
+            .then(function (res) {
+                if (!res.ok) throw new Error('Failed to load header');
+                return res.text();
+            })
+            .then(function (html) {
+                document.getElementById('site-header').innerHTML = html;
+            })
+            .catch(function (err) {
+                console.warn(err);
+            });
+    })();
+</script>
