@@ -6,23 +6,8 @@
         href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600&amp;family=Monomaniac+One&amp;display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="main.css" />
+    <script src="fetch-header-footer.js"></script>
 </head>
-
-<script>
-    (function () {
-        fetch('header.html')
-            .then(function (res) {
-                if (!res.ok) throw new Error('Failed to load header');
-                return res.text();
-            })
-            .then(function (html) {
-                document.getElementById('site-header').innerHTML = html;
-            })
-            .catch(function (err) {
-                console.warn(err);
-            });
-    })();
-</script>  
 
 <body>
     <div id="site-header"></div>
@@ -40,4 +25,5 @@
         </div>
         </div>
     </section>
+    <div id="site-footer"></div>
 </body>

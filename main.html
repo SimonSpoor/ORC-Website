@@ -8,23 +8,8 @@
         href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600&amp;family=Monomaniac+One&amp;display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="main.css" />
+    <script src="fetch-header-footer.js"></script>
 </head>
-
-<script>
-    (function () {
-        fetch('header.html')
-            .then(function (res) {
-                if (!res.ok) throw new Error('Failed to load header');
-                return res.text();
-            })
-            .then(function (html) {
-                document.getElementById('site-header').innerHTML = html;
-            })
-            .catch(function (err) {
-                console.warn(err);
-            });
-    })();
-</script>   
 
 <body>
     <div class="landing-page">
@@ -46,7 +31,7 @@
                         sed pretium ligula, vel imperdiet dolor. Aliquam at libero ac
                         purus pharetra tincidunt eu in risus. Mauris nec ligula elementum.
                     </p>
-                    <button class="learn-more">
+                    <button class="learn-more" onclick="window.location.href='about.html'">
                         Learn More
                         <span class="arrow">→</span>
                     </button>
@@ -113,10 +98,7 @@
                     </article>
                 </div>
             </section>
-
-            <footer class="bottom-bar">
-                <p>placeholder</p>
-            </footer>
+            <div id="site-footer"></div>
         </main>
 
     </div>
