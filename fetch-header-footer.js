@@ -9,7 +9,8 @@
             .catch(function (err) {
                 console.warn(err);
             });
-                    fetch('footer.html')
+
+        fetch('footer.html')
             .then(function (res) {
                 if (!res.ok) throw new Error('Failed to load footer');
                 return res.text();

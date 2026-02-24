@@ -11,7 +11,7 @@
 
 <body>
     <div id="site-header"></div>
-    <section class="content_section">
+    <section class="content_section" style="height:50%">
         <div class="content">
             <h1 class="content_title">About Us</h1>
             <p class="content_text">
@@ -25,5 +25,25 @@
         </div>
         </div>
     </section>
+                    <div class="decorative-rectangles" style="transform: scale(-1,-1);">
+                    <div class="rect rect-one"></div>
+                    <div class="rect rect-two"></div>
+                    <div class="rect rect-three"></div>
+                </div>
+    <div id="contact-form"></div>
     <div id="site-footer"></div>
 </body>
+
+<script>
+    fetch('contact-form.html')
+            .then(function (res) {
+                if (!res.ok) throw new Error('Failed to load contact form');
+                return res.text();
+            })
+            .then(function (html) {
+                document.getElementById('contact-form').innerHTML = html;
+            })
+            .catch(function (err) {
+                console.warn(err);
+            });
+</script>
