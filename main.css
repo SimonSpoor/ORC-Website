@@ -62,11 +62,12 @@ body {
   position: relative;
   padding: 100px 0;
   text-align: left;
-  outline: 8px solid #d4ecf2;
   height: 600px;
+  box-shadow: 0px -10px 0px #d4ecf2;
 }
 
 .content_section .content {
+  
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
@@ -77,11 +78,24 @@ body {
   font-size: 96px;
   margin: 0 0 20px;
 }
+h2 {
+  font-family: "Monomaniac One", sans-serif;
+  font-size: 48px;
+  margin: 0 0 20px;
+}
 
-.content_section .content_text {
+.content_text {
   font-size: 24px;
   margin: 0 0 20px;
   max-width: 695px;
+}
+
+body > .content_text {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+  max-width: 1200px;
+  display: block;
 }
 
 .learn-more {

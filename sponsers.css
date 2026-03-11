@@ -1,29 +1,32 @@
 #sponser-cont {
- display: flex;
+    display: flex;
     flex-direction: row;
-    gap: 20px; /* This adds space between each sponsor */
-    justify-content: center; /* This centers the whole row on the page */
+    gap: 20px;
+    justify-content: center;
     flex-wrap: wrap;
-    width:80%;
-    margin:auto;
-    font-size:18px;
-    text-align:center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-size: 18px;
+    text-align: center;
 }
 
 
 .sponser-display {
-    width: 100px;
-    height: 200px;
+    width: 200px;
+    height: 250px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-   
+    font-size: 14px;
+    font-weight: bold;
+
 }
 
 .sponser-img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -34,13 +37,28 @@
     object-fit: cover;
 }
 
-.sponser-display p {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: bold;
+#sep-bar {
+    height: 10px;
+    background-color: 094a62;
 }
 
-#sep-bar {
-    height:20px;
-    background-color:094a62;
+.SP_button {
+  display: inline-flex;
+  align-items: center;
+  background-color: 248db4;
+  border-radius: 40px;
+  padding: 10px 20px;
+  color: white;
+  font-size: 32px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease;
+  width: 700px;
+  height: 52px;
+  position: relative;
+}
+
+.SP_button:hover {
+  transform: scale(1.1);
 }
