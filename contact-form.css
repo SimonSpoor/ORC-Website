@@ -76,3 +76,15 @@
     transform: scale(0.98);
 }
 
+/* Mobile Responsive Design */
+@media (max-width: 600px) {
+#contact-form form {
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    font-family: "Gothic A1", sans-serif;
+    color: #2b2b2b;
+    margin-right:10%;
+
+}
+}

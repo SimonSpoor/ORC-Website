@@ -37,30 +37,14 @@
                 Rover Craft with you! Sponsoring our team provides your organization with brand visibility while
                 directly supporting our team's goals. A partnership with Okanagan Rover Craft allows you to connect with
                 top student talent in STEM fields and support both our craft, and our team's future. If you are
-                interested in supporting us, get involved today by filling out our contact form or emailing us at
-                outreach@okanaganrovercraft.ca.
+                interested in supporting us, check out our sponsorship page!
             </p>
+            <button class="learn-more" id="sponsor_button" onclick="window.location.href='sponsers.html'">
+                        Learn More
+                        <span class="arrow">→</span>
+                    </button>
         </div>
     </section>
-                    <div class="decorative-rectangles" style="transform: scale(-1,-1);">
-                    <div class="rect rect-one"></div>
-                    <div class="rect rect-two"></div>
-                    <div class="rect rect-three"></div>
-                </div>
-    <div id="contact-form"></div>
     <div id="site-footer"></div>
 </body>
 
-<script>
-    fetch('contact-form.html')
-            .then(function (res) {
-                if (!res.ok) throw new Error('Failed to load contact form');
-                return res.text();
-            })
-            .then(function (html) {
-                document.getElementById('contact-form').innerHTML = html;
-            })
-            .catch(function (err) {
-                console.warn(err);
-            });
-</script>

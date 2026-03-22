@@ -21,3 +21,15 @@
             .catch(function (err) {
                 console.warn(err);
             });
+
+        fetch('contact-form.html')
+            .then(function (res) {
+                if (!res.ok) throw new Error('Failed to load contact form');
+                return res.text();
+            })
+            .then(function (html) {
+                document.getElementById('contact-form').innerHTML = html;
+            })
+            .catch(function (err) {
+                console.warn(err);
+            });
