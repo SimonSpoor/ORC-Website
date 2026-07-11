@@ -1,36 +1,72 @@
+<?php
+
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
+
+$message_sent = false;
+
+if(isset($_POST['email']) && isset($_POST['name']) && isset($_POST['subject']) && isset($_POST['message'])) {
+    
+    //sanitize input
+    if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        // submit form
+        $userName = $_POST['name'];
+        $userEmail = $_POST['email'];  
+        $userSubject = $_POST['subject'];
+        $userMessage = $_POST['message'];
+
+        $to = "OKRoverTest@gmail.com";
+        $body = "";
+        $headers = "New email from: ".$userEmail. "\r\n";
+
+        $body .= "From: ".$userName. "\r\n";
+        $body .= "Email: ".$userEmail. "\r\n";
+        $body .= "Subject: ".$userSubject. "\r\n";
+        $body .= "Message: ".$userMessage. "\r\n";
+
+        mail($to, $userSubject, $body, $headers);
+        $message_sent = true;
+    }
+    
+}
+
+
+?>
+
 <!DOCTYPE html>
 
 <head>
     <title>Form submission</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="contact-form.css" />
 </head>
 
 <body>
     <h1 style="font-family:'Monomaniac One', sans-serif;margin-left:15%">Contact Us</h1>
     <div id="contact-form">
-        <form action="mail_handler.php" method="post">
-            First Name: <input type="text" name="first_name"><br>
-            Last Name: <input type="text" name="last_name"><br>
-            Email: <input type="text" name="email"><br>
-            Message:<br><textarea rows="5" name="message" cols="30"></textarea><br>
-            <input type="submit" name="submit" value="Submit">
-        </form>
+<form method="post" action="mail_handler.php">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required>
+        
+        <label for="email">E-Mail</label>
+        <input type="email" name="email" id="email" required>
+        
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" id="subject" required>
+        
+        <label for="message">Message</label>
+        <textarea name="message" id="message" required></textarea>
+        
+        <br>
+        
+        <button>Send</button>
+    </form>
 
     </div>
 
 
 </body>
 
-<script>
-    fetch('contact-form.html')
-            .then(function (res) {
-                if (!res.ok) throw new Error('Failed to load contact form');
-                return res.text();
-            })
-            .then(function (html) {
-                document.getElementById('contact-form').innerHTML = html;
-            })
-            .catch(function (err) {
-                console.warn(err);
-            });
-</script>
+</html>
+

@@ -24,7 +24,7 @@
                 console.warn(err);
             });
 
-        fetch('contact-form.html')
+        fetch('mail_handler.php')
             .then(function (res) {
                 if (!res.ok) throw new Error('Failed to load contact form');
                 return res.text();

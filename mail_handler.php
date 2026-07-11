@@ -1,32 +1,129 @@
-// Source - https://stackoverflow.com/a/18382062
-// Posted by Funk Forty Niner, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-02-03, License - CC BY-SA 3.0
+<?php
+$message_sent = false;
+$message_error = '';
 
-<?php 
-if(isset($_POST['submit'])){
-    $to = "sammoore359@gmail.com"; // this is your Email address
-    $from = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_SPECIAL_CHARS);
-    $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS);
-    $user_message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_SPECIAL_CHARS);
-
-    // Basic validation to ensure the email is actually a valid format
-    if (!filter_var($from, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email address. Please go back and try again.";
-        exit;
+function smtp_send($to, $subject, $body, $fromEmail, $fromName, $smtpHost, $smtpPort, $smtpUsername, $smtpPassword) {
+    $socket = fsockopen($smtpHost, $smtpPort, $errno, $errstr, 15);
+    if (!$socket) {
+        throw new Exception("Unable to connect to SMTP server: {$errstr} ({$errno})");
     }
 
-    $subject = "Form submission";
-    $subject2 = "Copy of your form submission";
-    $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
-    $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
+    $readResponse = function () use ($socket) {
+        return trim(fgets($socket, 515));
+    };
 
-    $headers = "From:" . $from;
-    $headers2 = "From:" . $to;
-    mail($to,$subject,$message,$headers);
-    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
-    echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
-    // You can also use header('Location: thank_you.php'); to redirect to another page.
-    // You cannot use header and echo together. It's one or the other.
+    $sendCommand = function ($command) use ($socket, $readResponse) {
+        fwrite($socket, $command . "\r\n");
+        return $readResponse();
+    };
+
+    $response = $readResponse();
+    if (substr($response, 0, 3) !== '220') {
+        throw new Exception("SMTP connection failed: {$response}");
     }
+
+    if (substr($sendCommand('EHLO ' . gethostname()), 0, 3) !== '250') {
+        throw new Exception('EHLO failed.');
+    }
+
+    if ($smtpUsername !== '' && $smtpPassword !== '') {
+        if (substr($sendCommand('AUTH LOGIN'), 0, 3) !== '334') {
+            throw new Exception('SMTP authentication failed.');
+        }
+
+        if (substr($sendCommand(base64_encode($smtpUsername)), 0, 3) !== '334') {
+            throw new Exception('SMTP username failed.');
+        }
+
+        if (substr($sendCommand(base64_encode($smtpPassword)), 0, 3) !== '235') {
+            throw new Exception('SMTP password failed.');
+        }
+    }
+
+    if (substr($sendCommand('MAIL FROM:<'.$fromEmail.'>'), 0, 3) !== '250') {
+        throw new Exception('MAIL FROM failed.');
+    }
+
+    if (substr($sendCommand('RCPT TO:<'.$to.'>'), 0, 3) !== '250' && substr($sendCommand('RCPT TO:<'.$to.'>'), 0, 3) !== '251') {
+        throw new Exception('RCPT TO failed.');
+    }
+
+    if (substr($sendCommand('DATA'), 0, 3) !== '354') {
+        throw new Exception('DATA failed.');
+    }
+
+    fwrite($socket, "From: {$fromName} <{$fromEmail}>\r\nTo: {$to}\r\nSubject: {$subject}\r\n\r\n{$body}\r\n.\r\n");
+    $response = $readResponse();
+    if (substr($response, 0, 3) !== '250') {
+        throw new Exception('Email data was not accepted.');
+    }
+
+    $sendCommand('QUIT');
+    fclose($socket);
+}
+
+if (isset($_POST['email']) && isset($_POST['name']) && isset($_POST['subject']) && isset($_POST['message'])) {
+    if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $userName = trim($_POST['name']);
+        $userEmail = trim($_POST['email']);
+        $userSubject = trim($_POST['subject']);
+        $userMessage = trim($_POST['message']);
+
+        $to = getenv('CONTACT_TO_EMAIL') ?: 'your-email@example.com';
+        $smtpHost = getenv('SMTP_HOST') ?: 'smtp.gmail.com';
+        $smtpPort = (int) (getenv('SMTP_PORT') ?: 465);
+        $smtpUsername = getenv('SMTP_USERNAME') ?: '';
+        $smtpPassword = getenv('SMTP_PASSWORD') ?: '';
+        $fromEmail = getenv('SMTP_FROM_EMAIL') ?: $smtpUsername ?: 'no-reply@example.com';
+        $fromName = getenv('SMTP_FROM_NAME') ?: 'Website Contact Form';
+
+        $subject = 'New contact form submission: ' . $userSubject;
+        $body = "Name: {$userName}\r\nEmail: {$userEmail}\r\nSubject: {$userSubject}\r\n\r\n{$userMessage}";
+
+        try {
+            smtp_send($to, $subject, $body, $fromEmail, $fromName, $smtpHost, $smtpPort, $smtpUsername, $smtpPassword);
+            $message_sent = true;
+        } catch (Exception $e) {
+            $message_error = $e->getMessage();
+        }
+    } else {
+        $message_error = 'Please enter a valid email address.';
+    }
+}
 ?>
+
+<!DOCTYPE html>
+<head>
+    <title>Form submission</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="contact-form.css" />
+</head>
+<body>
+    <h1 style="font-family:'Monomaniac One', sans-serif;margin-left:15%">Contact Us</h1>
+    <div id="contact-form">
+        <?php if ($message_sent): ?>
+            <p style="color: green;">Your message was sent successfully.</p>
+        <?php elseif ($message_error !== ''): ?>
+            <p style="color: red;"><?php echo htmlspecialchars($message_error, ENT_QUOTES, 'UTF-8'); ?></p>
+        <?php endif; ?>
+
+        <form method="post" action="">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required>
+
+            <label for="email">E-Mail</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="subject">Subject</label>
+            <input type="text" name="subject" id="subject" required>
+
+            <label for="message">Message</label>
+            <textarea name="message" id="message" required></textarea>
+
+            <br>
+
+            <button>Send</button>
+        </form>
+    </div>
+</body>
+</html>
