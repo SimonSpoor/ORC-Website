@@ -1,0 +1,10 @@
+.gallery_image{
+    width: 40%;
+    margin: 5px;
+}
+
+#photos {
+    margin: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}

@@ -1,0 +1,153 @@
+<head>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Okanagan Rovercraft</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600&amp;family=Monomaniac+One&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="gallery.css" />
+        <link rel="stylesheet" href="https://esm.sh/justified-gallery/style.css">
+    <script src="fetch-header-footer.js"></script>
+</head>
+
+<body>
+    <div id="site-header"></div>
+    <section class="content_section" style="height:20%; margin-top:60px;">
+        <div class="content">
+            <h1 class="content_title">Gallery</h1>
+            <p class="content_text">
+                In August 2026 we attended the Canadian International Rover Challenge with our first rover D.A.V.E. <br>
+            </p>
+        </div>
+    </section>
+
+    <div class="justified-gallery" id="photos"></div>
+    <div id="site-footer"></div>
+
+    <script>
+        const photoFiles = [
+            "gallery-image-2026-1.jpg",
+            "gallery-image-2026-2.jpg",
+            "gallery-image-2026-3.jpg",
+            "gallery-image-2026-4.jpg",
+            "gallery-image-2026-5.jpg",
+            "gallery-image-2026-6.jpg",
+            "gallery-image-2026-7.jpg",
+            "gallery-image-2026-8.jpg",
+            "gallery-image-2026-9.jpg",
+            "gallery-image-2026-10.jpg",
+            "gallery-image-2026-11.jpg",
+            "gallery-image-2026-12.jpg",
+            "gallery-image-2026-13.jpg",
+            "gallery-image-2026-14.jpg",
+            "gallery-image-2026-15.jpg",
+            "gallery-image-2026-16.jpg",
+            "gallery-image-2026-17.jpg",
+            "gallery-image-2026-18.jpg",
+            "gallery-image-2026-19.jpg",
+            "gallery-image-2026-20.jpg",
+            "gallery-image-2026-21.jpg",
+            "gallery-image-2026-22.jpg",
+            "gallery-image-2026-23.jpg",
+            "gallery-image-2026-24.jpg",
+            "gallery-image-2026-25.jpg",
+            "gallery-image-2026-26.jpg",
+            "gallery-image-2026-27.jpg",
+            "gallery-image-2026-28.jpg",
+            "gallery-image-2026-29.jpg",
+            "gallery-image-2026-30.jpg",
+            "gallery-image-2026-31.jpg",
+            "gallery-image-2026-32.jpg",
+            "gallery-image-2026-33.jpg",
+            "gallery-image-2026-34.jpg",
+            "gallery-image-2026-35.jpg",
+            "gallery-image-2026-36.jpg",
+            "gallery-image-2026-37.jpg",
+            "gallery-image-2026-38.jpg",
+            "gallery-image-2026-39.jpg",
+            "gallery-image-2026-40.jpg",
+            "gallery-image-2026-41.jpg",
+            "gallery-image-2026-42.jpg",
+            "gallery-image-2026-43.jpg",
+            "gallery-image-2026-44.jpg",
+            "gallery-image-2026-45.jpg",
+            "gallery-image-2026-46.jpg",
+            "gallery-image-2026-47.jpg",
+            "gallery-image-2026-48.jpg",
+            "gallery-image-2026-49.jpg",
+            "gallery-image-2026-50.jpg",
+            "gallery-image-2026-51.jpg",
+            "gallery-image-2026-52.jpg",
+            "gallery-image-2026-53.jpg",
+            "gallery-image-2026-54.jpg",
+            "gallery-image-2026-55.jpg",
+            "gallery-image-2026-56.jpg",
+            "gallery-image-2026-57.jpg",
+            "gallery-image-2026-58.jpg",
+            "gallery-image-2026-59.jpg",
+            "gallery-image-2026-60.jpg",
+            "gallery-image-2026-61.jpg",
+            "gallery-image-2026-62.jpg",
+            "gallery-image-2026-63.jpg",
+            "gallery-image-2026-64.jpg",
+            "gallery-image-2026-65.jpg",
+            "gallery-image-2026-66.jpg",
+            "gallery-image-2026-67.jpg",
+            "gallery-image-2026-68.jpg",
+            "gallery-image-2026-69.jpg",
+            "gallery-image-2026-70.jpg",
+            "gallery-image-2026-71.jpg",
+            "gallery-image-2026-72.jpg",
+            "gallery-image-2026-73.jpg",
+            "gallery-image-2026-74.jpg",
+            "gallery-image-2026-75.jpg",
+            "gallery-image-2026-76.jpg",
+            "gallery-image-2026-77.jpg",
+            "gallery-image-2026-78.jpg",
+            "gallery-image-2026-79.jpg",
+            "gallery-image-2026-80.jpg",
+            "gallery-image-2026-81.jpg",
+            "gallery-image-2026-82.jpg",
+            "gallery-image-2026-83.jpg",
+            "gallery-image-2026-84.jpg",
+            "gallery-image-2026-85.jpg",
+            "gallery-image-2026-86.jpg",
+            "gallery-image-2026-87.jpg",
+            "gallery-image-2026-88.jpg",
+            "gallery-image-2026-89.jpg",
+            "gallery-image-2026-90.jpg",
+            "gallery-image-2026-91.jpg"
+        ];
+
+        const photoContainer = document.getElementById('photos');
+
+        photoFiles.forEach((fileName) => {
+            const link = document.createElement('a');
+            const imagePath = `Photos 2026/${fileName}`;
+            link.href = imagePath;
+            link.target = '_blank';
+            link.rel = 'noopener';
+
+            const img = document.createElement('img');
+            img.src = imagePath;
+            img.alt = fileName;
+            img.className = 'gallery_image';
+
+            link.appendChild(img);
+            photoContainer.appendChild(link);
+        });
+
+    </script>
+
+    <script type="module">
+        import { JustifiedGallery } from 'https://esm.sh/justified-gallery';
+                       new JustifiedGallery(document.querySelector('#photos'), {
+                    rowHeight: 200,
+                    lastRow: 'nojustify',
+                    margins: 3,
+                }).init();
+    </script>
+</body>
+
